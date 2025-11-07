@@ -1,0 +1,140 @@
+<div id="shopify-section-{{ section.id }}" class="custom-section">
+  <div class="container" style="display: flex; align-items: center; flex-wrap: wrap;">
+    
+    <!-- 🖼️ Image Column -->
+    <div style="width: 20%; padding: 10px;">
+      {% if section.settings.image %}
+        <img src="{{ section.settings.image | img_url: 'medium' }}" alt="Section image" style="width: 100%; height: auto; border-radius: {{ section.settings.image_radius }}px;">
+      {% endif %}
+    </div>
+
+    <!-- 📝 Text Column -->
+    <div style="width: 20%; padding: 10px; text-align: {{ section.settings.text_alignment }};">
+      {% if section.settings.heading != blank %}
+        <h2 style="
+          font-size: {{ section.settings.heading_size }}px;
+          font-family: {{ section.settings.font_family }};
+          color: {{ section.settings.heading_color }};
+          margin-bottom: 10px;
+        ">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+      
+      {% if section.settings.description != blank %}
+        <p style="
+          font-size: {{ section.settings.text_size }}px;
+          color: {{ section.settings.text_color }};
+          font-family: {{ section.settings.font_family }};
+        ">
+          {{ section.settings.description }}
+        </p>
+      {% endif %}
+      
+      {% if section.settings.button_label != blank %}
+        <a href="{{ section.settings.button_link }}" style="
+          display: inline-block;
+          background-color: {{ section.settings.button_bg }};
+          color: {{ section.settings.button_text_color }};
+          padding: 10px 20px;
+          text-decoration: none;
+          border-radius: {{ section.settings.button_radius }}px;
+          margin-top: 10px;
+        ">
+          {{ section.settings.button_label }}
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- 🎥 Video Column -->
+    <div style="width: 60%; padding: 10px;">
+      {% if section.settings.video_url != blank %}
+        <video 
+          src="{{ section.settings.video_url }}" 
+          controls 
+          style="width: 100%; border-radius: {{ section.settings.video_radius }}px;"
+        ></video>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    background-color: {{ section.settings.background_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  @media (max-width: 768px) {
+    #shopify-section-{{ section.id }} .container {
+      flex-direction: column;
+    }
+    #shopify-section-{{ section.id }} .container > div {
+      width: 100% !important;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "🧩 Image Text Video",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content Settings"
+    },
+    { "type": "image_picker", "id": "image", "label": "Upload Image" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Your Heading Here" },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "Add your section description here." },
+    { "type": "url", "id": "button_link", "label": "Button Link" },
+    { "type": "text", "id": "button_label", "label": "Button Label", "default": "Learn More" },
+    { "type": "video_url", "id": "video_url", "label": "Video URL", "accept":["youtube","vimeo"]},
+
+    {
+      "type": "header",
+      "content": "🎨 Design Settings"
+    },
+    { "type": "color", "id": "background_color", "label": "Background Color", "default": "#ffffff" },
+    { "type": "color", "id": "heading_color", "label": "Heading Color", "default": "#000000" },
+    { "type": "color", "id": "text_color", "label": "Text Color", "default": "#333333" },
+    { "type": "color", "id": "button_bg", "label": "Button Background", "default": "#000000" },
+    { "type": "color", "id": "button_text_color", "label": "Button Text Color", "default": "#ffffff" },
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "Font Family",
+      "options": [
+        { "value": "Poppins, sans-serif", "label": "Poppins" },
+        { "value": "Roboto, sans-serif", "label": "Roboto" },
+        { "value": "Playfair Display, serif", "label": "Playfair Display" },
+        { "value": "Open Sans, sans-serif", "label": "Open Sans" }
+      ],
+      "default": "Poppins, sans-serif"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    { "type": "range", "id": "heading_size", "label": "Heading Font Size (px)", "min": 12, "max": 60, "step": 1, "default": 26 },
+    { "type": "range", "id": "text_size", "label": "Text Font Size (px)", "min": 10, "max": 30, "step": 1, "default": 16 },
+    { "type": "range", "id": "padding_top", "label": "Top Padding (px)", "min": 0, "max": 150, "step": 5, "default": 50 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom Padding (px)", "min": 0, "max": 150, "step": 5, "default": 50 },
+    { "type": "range", "id": "image_radius", "label": "Image Border Radius (px)", "min": 0, "max": 50, "step": 1, "default": 0 },
+    { "type": "range", "id": "video_radius", "label": "Video Border Radius (px)", "min": 0, "max": 50, "step": 1, "default": 0 },
+    { "type": "range", "id": "button_radius", "label": "Button Border Radius (px)", "min": 0, "max": 50, "step": 1, "default": 5 }
+  ],
+  "presets": [
+    {
+      "name": "Image Text Video Section"
+    }
+  ]
+}
+{% endschema %}

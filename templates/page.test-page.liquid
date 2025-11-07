@@ -1,0 +1,15 @@
+<style>
+  .widget-container img {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+}
+
+</style>
+<div class="dynamic-image-widget">
+  {% if page.metafields.custom.custom_image %}
+    <img src="{{ page.metafields.custom.custom_image | img_url: 'large' }}" alt="{{ page.title }}">
+  {% else %}
+    <img src="{{ 'default-image.jpg' | asset_url }}" alt="Default Image">
+  {% endif %}
+</div>
