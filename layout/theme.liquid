@@ -253,6 +253,24 @@
           font-size: 1.6rem;
         }
       }
+/* Custom css by bilal */
+      span.custom-label {
+          z-index: 1;
+          background-color: red;
+          position: absolute;
+          left: 10px;
+          top: 10px;
+          padding: 5px 15px;
+          color: #fff;
+          font-weight: 700;
+          border-radius: 30px;
+      }
+
+
+
+
+
+
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
