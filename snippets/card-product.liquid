@@ -59,12 +59,11 @@
       >
         {%- if card_product.featured_media -%}
           <div class="card__media{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}">
-          bilal
-            {% if product.metafields.custom.product_label %}
-              <div class="product-label">
-                {{ product.metafields.custom.product_label }}
-              </div>
-            {% endif %}
+          {% if product.metafields.custom.product_label %}
+            <span class="custom-label">
+              {{ product.metafields.custom.product_label }}
+            </span>
+          {% endif %}
             <div class="media media--transparent media--hover-effect">
               {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
               <img
