@@ -103,25 +103,35 @@
     "collapsible_content_GNcjjT": {
       "type": "collapsible-content",
       "blocks": {
+        "collapsible_row_TwbLq3": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Wash Bottel",
+            "icon": "check_mark",
+            "row_content": "<p>{{ metaobjects.meterial[\"always-dry-the-bottel-before-fill\"].wash.value }}</p>",
+            "page": ""
+          }
+        },
         "collapsible_row_KiphKn": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "{{ block.settings.page.title }}",
+            "heading": "DRY Bootel",
             "icon": "check_mark",
-            "row_content": "{{ block.settings.page.content }}",
+            "row_content": "<p>{{ metaobjects.meterial[\"always-dry-the-bottel-before-fill\"].meterial.value }}</p>",
             "page": ""
           }
         }
       },
       "block_order": [
+        "collapsible_row_TwbLq3",
         "collapsible_row_KiphKn"
       ],
       "name": "t:sections.collapsible_content.presets.name",
       "settings": {
         "caption": "",
-        "heading": "Collapsible content",
+        "heading": "Care instructions",
         "heading_size": "h1",
-        "heading_alignment": "center",
+        "heading_alignment": "left",
         "layout": "none",
         "color_scheme": "",
         "container_color_scheme": "",
