@@ -254,17 +254,39 @@
         }
       }
 /* Custom css by bilal */
-      span.custom-label {
-          z-index: 1;
-          background-color: red;
-          position: absolute;
-          left: 10px;
-          top: 10px;
-          padding: 5px 15px;
-          color: #fff;
-          font-weight: 700;
-          border-radius: 30px;
+    .custom-label {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        padding: 5px 10px;
+        color: #fff;
+        font-weight: 600;
+        border-radius: 4px;
+        text-transform: uppercase;
+        font-size: 12px;
+        z-index: 5;
       }
+
+      /* For each specific label */
+      .label-new {
+        background: #48BA8D; /* green */
+      }
+
+      .label-sale {
+        background: #E63946; /* red */
+      }
+
+      .label-limited {
+        background-image: url("https://cdn.shopify.com/s/files/your-bg-image.png?v=1");
+        background-size: cover;
+        color: #fff;
+        border: 1px solid #fff;
+      }
+
+      .label-default {
+        background: #000;
+      }
+
 
 
 
