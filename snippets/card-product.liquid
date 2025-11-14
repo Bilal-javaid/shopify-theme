@@ -122,46 +122,61 @@
           </div>
         {%- endif -%}
 
-        {% comment %}
-          Replace `card_product` with `product` if you are in product template.
-          The metafield key used: product.metafields.custom.product_label_style
-        {% endcomment %}
+        {% assign label_obj = card_product.metafields.custom.product_label_style.value %}
+{% if label_obj %}
+  {% assign label_name = label_obj.label_name %}
+  {% assign bg_color = label_obj.background_color %}
+  {% assign text_color = label_obj.text_color %}
+  {% assign bg_image = label_obj.background_image %}
+  {% assign icon = label_obj.icon %}
+  {% assign extra_class = label_obj.extra_css_class %}
 
-        {%- assign label_ref = card_product.metafields.custom.product_label_style.value -%}
-        {% if label_ref %}
-          {% comment %} label_ref is a metaobject drop with fields defined earlier {% endcomment %}
-          {% assign label_name = label_ref.label_name %}
-          {% assign bg_color = label_ref.background_color %}
-          {% assign text_color = label_ref.text_color %}
-          {% assign bg_image = label_ref.background_image %}
-          {% assign icon = label_ref.icon %}
-          {% assign css_class = label_ref.css_class %}
+  <span class="dynamic-label {{ extra_class }}">
+    {% if icon %}
+      <img class="dynamic-label__icon" 
+           src="{{ icon | img_url: '48x48' }}" 
+           alt="{{ label_name }}">
+    {% endif %}
+    <span class="dynamic-label__text">{{ label_name }}</span>
+  </span>
 
-          <span class="dynamic-label {{ css_class }}">
-            {% if icon %}<img class="dynamic-label__icon" src="{{ icon | img_url: '48x48' }}" alt="{{ label_name }}">{% endif %}
-            <span class="dynamic-label__text">{{ label_name }}</span>
-          </span>
+  <style>
+    .dynamic-label.{{ extra_class }} {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
 
-          <style>
-            /* inline fallback styles to ensure immediate rendering; move to CSS file for production */
-            .dynamic-label.{{ css_class }} {
-              display:inline-flex;
-              align-items:center;
-              gap:8px;
-              padding:6px 10px;
-              border-radius:6px;
-              font-weight:600;
-              font-size:12px;
-              text-transform:uppercase;
-              {% if bg_image %} background-image: url('{{ bg_image | img_url: '400x' }}'); background-size:cover; background-position:center; {% elsif bg_color %} background: {{ bg_color }}; {% else %} background: #000; {% endif %}
-              {% if text_color %} color: {{ text_color }}; {% else %} color: #fff; {% endif %}
-            }
-            .dynamic-label__icon { width:18px; height:18px; object-fit:contain; display:inline-block; }
-          </style>
-        {% endif %}
+      /* Background priority: Image → Color */
+      {% if bg_image %}
+        background-image: url('{{ bg_image | img_url: "400x" }}');
+        background-size: cover;
+        background-position: center;
+      {% elsif bg_color %}
+        background-color: {{ bg_color }};
+      {% else %}
+        background-color: #000;
+      {% endif %}
 
+      /* Text color */
+      {% if text_color %}
+        color: {{ text_color }};
+      {% else %}
+        color: #fff;
+      {% endif %}
+    }
 
-
+    .dynamic-label__icon {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+    }
+  </style>
+{% endif %}
 
 
         <div class="card__content">
