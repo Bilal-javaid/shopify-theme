@@ -36,8 +36,8 @@
   <div class="profile-card-wrap">
     <div class="pcard">
         <div class="pmedia">
-            <img class="main-img" src="{{ section.settings.profil_image }}"/>
-            <img class="label-img" src="{{ section.settings.profil_label_image }}">
+            <img class="main-img" src="{{ section.settings.profil_image | img_url: 'large'}}"/>
+            <img class="label-img" src="{{ section.settings.profil_label_image | img_url: 'large' }}">
         </div>
         <div class="pcontent">
             <h3>{{ section.settings.card_heading }}</h3>
