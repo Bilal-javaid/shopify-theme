@@ -45,28 +45,6 @@
             <button class="pbtn">Visit profile</button>
         </div>
     </div>
-    <div class="pcard">
-        <div class="pmedia">
-            <img class="main-img" src="https://cdn.shopify.com/s/files/1/0683/6967/8526/files/3.webp?v=1763538705"/>
-            <img class="label-img" src="https://cdn.shopify.com/s/files/1/0683/6967/8526/files/summersemistitched.jpg?v=1754576073">
-        </div>
-        <div class="pcontent">
-            <h3>Fragrance Experience</h3>
-            <p>Discover the allure of our Ceremonial collection. Discover the allure of our Ceremonial collection.</p>
-            <button class="pbtn">Visit profile</button>
-        </div>
-    </div>
-    <div class="pcard">
-        <div class="pmedia">
-            <img class="main-img" src="https://cdn.shopify.com/s/files/1/0683/6967/8526/files/3.webp?v=1763538705"/>
-            <img class="label-img" src="https://cdn.shopify.com/s/files/1/0683/6967/8526/files/summersemistitched.jpg?v=1754576073">
-        </div>
-        <div class="pcontent">
-            <h3>Fragrance Experience</h3>
-            <p>Discover the allure of our Ceremonial collection. Discover the allure of our Ceremonial collection.</p>
-            <button class="pbtn">Visit profile</button>
-        </div>
-    </div>
   </div>
 </section>
 
@@ -75,7 +53,19 @@
 {
     "name":"proile cards",
     "tag": "section",
-    "settings":[],
+    "settings":[
+        {
+
+            "type": "image_picker",
+            "id": "profil_image",
+            "label": "main_image"
+        },
+        {
+            "type": "image_picker",
+            "id": "profil_label_image",
+            "label": "label_image"
+        }
+    ],
     "presets":[
         {
           "name": "profile card",
