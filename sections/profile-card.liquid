@@ -36,13 +36,13 @@
   <div class="profile-card-wrap">
     <div class="pcard">
         <div class="pmedia">
-            <img class="main-img" src="https://cdn.shopify.com/s/files/1/0683/6967/8526/files/3.webp?v=1763538705"/>
-            <img class="label-img" src="https://cdn.shopify.com/s/files/1/0683/6967/8526/files/summersemistitched.jpg?v=1754576073">
+            <img class="main-img" src="{{ section.settings.profil_image }}"/>
+            <img class="label-img" src="{{ section.settings.profil_label_image }}">
         </div>
         <div class="pcontent">
-            <h3>Fragrance Experience</h3>
-            <p>Discover the allure of our Ceremonial collection. Discover the allure of our Ceremonial collection.</p>
-            <button class="pbtn">Visit profile</button>
+            <h3>{{ section.settings.card_heading }}</h3>
+            <p>{{ section.settings.card_description }}</p>
+            <a class="pbtn" href="{{ section.settings.card_button_link }}">{{ section.settings.card_button }}</a>
         </div>
     </div>
   </div>
