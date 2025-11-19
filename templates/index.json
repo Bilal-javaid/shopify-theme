@@ -80,14 +80,38 @@
     "profile_card_wLepLJ": {
       "type": "profile-card",
       "name": "profile card",
-      "settings": {
-        "profil_image": "shopify://shop_images/3.webp",
-        "profil_label_image": "shopify://shop_images/summerstitched.jpg",
-        "card_heading": "Perfumer Experiance",
-        "card_description": "Perfumer Experiance Perfumer Experiance Perfumer Experiance Perfumer Experiance Perfumer Experiance Perfumer Experiance",
-        "card_button": "Visit Profile",
-        "card_button_link": ""
-      }
+      "settings": {}
+    },
+    "profile_card_Fcqd6L": {
+      "type": "profile-card",
+      "blocks": {
+        "profile_card_9kQDDX": {
+          "type": "profile_card",
+          "settings": {
+            "profil_image": "shopify://shop_images/3.webp",
+            "profil_label_image": "shopify://shop_images/2.webp",
+            "card_heading": "yufgyifyi",
+            "card_description": "fgyiguog9fy",
+            "card_button": "yoihiohio",
+            "card_button_link": "#"
+          }
+        },
+        "profile_card_h4GLAz": {
+          "type": "profile_card",
+          "settings": {
+            "card_heading": "",
+            "card_description": "",
+            "card_button": "",
+            "card_button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "profile_card_9kQDDX",
+        "profile_card_h4GLAz"
+      ],
+      "name": "profile card",
+      "settings": {}
     },
     "image_banner_fRfeCf": {
       "type": "image-banner",
@@ -169,6 +193,7 @@
     "image_banner",
     "featured_collection",
     "profile_card_wLepLJ",
+    "profile_card_Fcqd6L",
     "image_banner_fRfeCf",
     "media_section_bybilal_tWeTVk"
   ]
