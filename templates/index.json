@@ -85,30 +85,20 @@
     "profile_card_Fcqd6L": {
       "type": "profile-card",
       "blocks": {
-        "profile_card_9kQDDX": {
+        "profile_card_eHyCwe": {
           "type": "profile_card",
           "settings": {
-            "profil_image": "shopify://shop_images/3.webp",
-            "profil_label_image": "shopify://shop_images/2.webp",
-            "card_heading": "yufgyifyi",
-            "card_description": "fgyiguog9fy",
-            "card_button": "yoihiohio",
-            "card_button_link": "#"
-          }
-        },
-        "profile_card_h4GLAz": {
-          "type": "profile_card",
-          "settings": {
-            "card_heading": "",
-            "card_description": "",
-            "card_button": "",
+            "profil_image": "shopify://shop_images/1.webp",
+            "profil_label_image": "shopify://shop_images/summerstitched.jpg",
+            "card_heading": "ererqw",
+            "card_description": "werqwerwer",
+            "card_button": "erwerwer",
             "card_button_link": ""
           }
         }
       },
       "block_order": [
-        "profile_card_9kQDDX",
-        "profile_card_h4GLAz"
+        "profile_card_eHyCwe"
       ],
       "name": "profile card",
       "settings": {}
