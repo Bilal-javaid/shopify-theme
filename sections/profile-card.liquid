@@ -34,6 +34,7 @@
   </style>
 
   <div class="profile-card-wrap">
+    {% for block in section.blocks %}
     <div class="pcard">
         <div class="pmedia">
             <img class="main-img" src="{{ section.settings.profil_image | img_url: 'large'}}"/>
@@ -45,7 +46,8 @@
             <a class="pbtn" href="{{ section.settings.card_button_link }}">{{ section.settings.card_button }}</a>
         </div>
     </div>
-  </div>
+    {% endfor %}
+    </div>
 </section>
 
 
