@@ -1,4 +1,11 @@
-<style>
+{% comment %}
+  Static Profile Cards Section
+  - No customization options
+  - Will show exactly the HTML provided
+{% endcomment %}
+
+<section id="static-profile-cards-{{ section.id }}" class="static-profile-cards">
+  <style>
     .profile-card-wrap{
         width:100%;
         display:flex;
@@ -10,7 +17,7 @@
      width:32%;
     }
     .pcard .pmedia{
-        position:ralative;
+        position:relative; /* Fixed: was "ralative" */
     }
     .pcard .pmedia .main-img{
         width:100%;
@@ -21,18 +28,19 @@
         width:100px;
         height:100px;
         border-radius:100%;
+        top:10px; /* Optional positioning */
+        left:10px;
     }
-</style>
+  </style>
 
-
-<div class="profile-card-wrap">
+  <div class="profile-card-wrap">
     <div class="pcard">
         <div class="pmedia">
             <img class="main-img" src="https://cdn.shopify.com/s/files/1/0683/6967/8526/files/3.webp?v=1763538705"/>
             <img class="label-img" src="https://cdn.shopify.com/s/files/1/0683/6967/8526/files/summersemistitched.jpg?v=1754576073">
         </div>
         <div class="pcontent">
-            <h3>Fragnance Experiance</h3>
+            <h3>Fragrance Experience</h3>
             <p>Discover the allure of our Ceremonial collection. Discover the allure of our Ceremonial collection.</p>
             <button class="pbtn">Visit profile</button>
         </div>
@@ -43,20 +51,36 @@
             <img class="label-img" src="https://cdn.shopify.com/s/files/1/0683/6967/8526/files/summersemistitched.jpg?v=1754576073">
         </div>
         <div class="pcontent">
-            <h3>Fragnance Experiance</h3>
+            <h3>Fragrance Experience</h3>
             <p>Discover the allure of our Ceremonial collection. Discover the allure of our Ceremonial collection.</p>
             <button class="pbtn">Visit profile</button>
         </div>
     </div>
-     <div class="pcard">
+    <div class="pcard">
         <div class="pmedia">
             <img class="main-img" src="https://cdn.shopify.com/s/files/1/0683/6967/8526/files/3.webp?v=1763538705"/>
             <img class="label-img" src="https://cdn.shopify.com/s/files/1/0683/6967/8526/files/summersemistitched.jpg?v=1754576073">
         </div>
         <div class="pcontent">
-            <h3>Fragnance Experiance</h3>
+            <h3>Fragrance Experience</h3>
             <p>Discover the allure of our Ceremonial collection. Discover the allure of our Ceremonial collection.</p>
             <button class="pbtn">Visit profile</button>
         </div>
     </div>
-</div>
+  </div>
+</section>
+
+
+{% schema %}
+{
+    "name":"proile cards",
+    "tag": "section",
+    "settings":[],
+    "presets":[
+        {
+          "name": "profile card",
+          "category": "custom"
+        }
+    ]
+}
+{% endschema %}
