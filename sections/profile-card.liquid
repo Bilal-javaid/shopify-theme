@@ -37,13 +37,13 @@
     {% for block in section.blocks %}
     <div class="pcard">
         <div class="pmedia">
-            <img class="main-img" src="{{ blocks.settings.profil_image | img_url: 'large'}}"/>
-            <img class="label-img" src="{{ blocks.settings.profil_label_image | img_url: 'large' }}">
+            <img class="main-img" src="{{ block.settings.profil_image | img_url: 'large'}}"/>
+            <img class="label-img" src="{{ block.settings.profil_label_image | img_url: 'large' }}">
         </div>
         <div class="pcontent">
-            <h3>{{ blocks.settings.card_heading }}</h3>
-            <p>{{ blocks.settings.card_description }}</p>
-            <a class="pbtn" href="{{ blocks.settings.card_button_link }}">{{ blocks.settings.card_button }}</a>
+            <h3>{{ block.settings.card_heading }}</h3>
+            <p>{{ block.settings.card_description }}</p>
+            <a class="pbtn" href="{{ block.settings.card_button_link }}">{{ block.settings.card_button }}</a>
         </div>
     </div>
     {% endfor %}
