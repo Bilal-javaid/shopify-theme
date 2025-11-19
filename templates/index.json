@@ -77,6 +77,11 @@
         "padding_bottom": 36
       }
     },
+    "profile_card_iNmzBi": {
+      "type": "profile-card",
+      "name": "profile card",
+      "settings": {}
+    },
     "image_banner_fRfeCf": {
       "type": "image-banner",
       "blocks": {
@@ -156,6 +161,7 @@
   "order": [
     "image_banner",
     "featured_collection",
+    "profile_card_iNmzBi",
     "image_banner_fRfeCf",
     "media_section_bybilal_tWeTVk"
   ]
