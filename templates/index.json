@@ -97,7 +97,7 @@
             "profil_image": "shopify://shop_images/1.webp",
             "profil_label_image": "shopify://shop_images/winterunstitched.jpg",
             "card_heading": "Fregnane party",
-            "card_description": "fregnane is good for health because peprle fee you are  a good perso like to you njno jclsjcd al clodj aldcodjcjdcdpcid nowdbcodjcpiwjc wcn",
+            "card_description": "fregnane is good for health because peprle fee you are  a good perso like to you njno jclsjcd al clodj aldcodjcjdcdpcid",
             "card_button": "Visit Profile",
             "card_button_link": "#"
           }
@@ -121,7 +121,8 @@
       ],
       "name": "profile card",
       "settings": {
-        "pcard_padding": 10
+        "pcard_padding": 10,
+        "card-border-width": 4
       }
     },
     "image_banner_fRfeCf": {
