@@ -77,11 +77,6 @@
         "padding_bottom": 36
       }
     },
-    "profile_card_wLepLJ": {
-      "type": "profile-card",
-      "name": "profile card",
-      "settings": {}
-    },
     "profile_card_Fcqd6L": {
       "type": "profile-card",
       "blocks": {
@@ -125,7 +120,9 @@
         "profile_card_aBnREM"
       ],
       "name": "profile card",
-      "settings": {}
+      "settings": {
+        "pcard_padding": 10
+      }
     },
     "image_banner_fRfeCf": {
       "type": "image-banner",
@@ -206,7 +203,6 @@
   "order": [
     "image_banner",
     "featured_collection",
-    "profile_card_wLepLJ",
     "profile_card_Fcqd6L",
     "image_banner_fRfeCf",
     "media_section_bybilal_tWeTVk"
