@@ -34,7 +34,11 @@
         left:10px;
     }
     #static-profile-cards-{{ section.id }} .pbtn{
-    
+
+    background-color:{{ section.settings.btn-bg-color }};
+    border:{{ section.settings.btn-border-width }}px solid;
+    color:{{ section.settings.btn0text-color }}
+
     }
   </style>
 
@@ -94,7 +98,7 @@
         },
         {
         "type": "color",
-        "id": "btn0text-color",
+        "id": "btn-text-color",
         "label": "btn text color",
         "default":"#fff"
         }
