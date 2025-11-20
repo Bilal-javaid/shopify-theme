@@ -122,7 +122,10 @@
       "name": "profile card",
       "settings": {
         "pcard_padding": 10,
-        "card-border-width": 4
+        "card-border-width": 4,
+        "btn-border-width": 2,
+        "btn-bg-color": "#dd2020",
+        "btn-text-color": "#ffffff"
       }
     },
     "image_banner_fRfeCf": {
