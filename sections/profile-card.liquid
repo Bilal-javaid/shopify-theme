@@ -33,6 +33,9 @@
         top:10px; /* Optional positioning */
         left:10px;
     }
+    #static-profile-cards-{{ section.id }} .pbtn{
+    
+    }
   </style>
 
   <div class="profile-card-wrap">
@@ -73,8 +76,28 @@
         "default":1,
         "min": 0,
         "max": 4
+        },
+        {
+        "type": "range",
+        "id": "btn-border-width",
+        "label": "btn border width",
+        "default":1,
+        "min": 0,
+        "max": 3,
         }
-        
+        ,
+        {
+        "type": "color",
+        "id": "btn-bg-color",
+        "label": "background color",
+        "default":"#000"
+        },
+        {
+        "type": "color",
+        "id": "btn0text-color",
+        "label": "btn text color",
+        "default":"#fff"
+        }
     ],
     "blocks":[
         {
