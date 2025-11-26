@@ -401,6 +401,45 @@
         recipientFormCollapsed: `{{ 'recipient.form.collapsed' | t }}`,
         countrySelectorSearchCount: `{{ 'localization.country_results_count' | t: count: '[count]' }}`,
       };
+
+
+
+      document.addEventListener('DOMContentLoaded', function () {
+  let loading = false;
+  
+  window.addEventListener('scroll', function () {
+    const nextPageElement = document.getElementById('NextPageURL');
+    if (!nextPageElement || nextPageElement.getAttribute('data-last-page') === 'true') return;
+    if (loading) return;
+
+    let nextPageURL = nextPageElement.getAttribute('data-next-page');
+
+    if (window.scrollY + window.innerHeight >= document.body.offsetHeight - 300) {
+      loading = true;
+      fetch(nextPageURL)
+        .then(res => res.text())
+        .then(data => {
+          let parser = new DOMParser();
+          let doc = parser.parseFromString(data, 'text/html');
+          let newProducts = doc.querySelector('#AjaxProductContainer').innerHTML;
+          let newNextPage = doc.querySelector('#NextPageURL');
+
+          document.getElementById('AjaxProductContainer').innerHTML += newProducts;
+
+          if (newNextPage) {
+            nextPageElement.setAttribute('data-next-page', newNextPage.getAttribute('data-next-page'));
+          } else {
+            nextPageElement.setAttribute('data-last-page', 'true');
+          }
+          loading = false;
+        })
+        .catch(() => {
+          loading = false;
+        });
+    }
+  });
+});
+
     </script>
 
     {%- if settings.predictive_search_enabled -%}
