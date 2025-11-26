@@ -402,29 +402,37 @@
         countrySelectorSearchCount: `{{ 'localization.country_results_count' | t: count: '[count]' }}`,
       };
 
-      let currentPage = 1;
-      const totalPages = {{ paginate.pages }};
-      const productGrid = document.getElementById('product-grid');
+     let currentPage = 1;
+let loading = false;
 
-      window.addEventListener('scroll', () => {
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 200) {
-          if (currentPage < totalPages) {
-            currentPage++;
-            loadMoreProducts(currentPage);
-          }
-        }
-      });
+window.addEventListener('scroll', () => {
+  if (loading) return;
+  
+  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 300) {
+    const nextPage = currentPage + 1;
+    const totalPages = {{ paginate.pages }};
+    
+    if (nextPage > totalPages) return;
+    
+    loading = true;
+    
+    fetch(`?page=${nextPage}`)
+      .then(response => response.text())
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, "text/html");
+        const newProducts = doc.querySelectorAll("#product-grid > li");
 
-      function loadMoreProducts(page) {
-        fetch(`?page=${page}&section_id={{ section.id }}`)
-          .then(response => response.text())
-          .then(data => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(data, 'text/html');
-            const newItems = htmlDoc.querySelectorAll('#product-grid > li');
-            newItems.forEach(item => productGrid.appendChild(item));
-          });
-      }
+        newProducts.forEach(product => {
+          document.querySelector("#product-grid").appendChild(product);
+        });
+
+        currentPage++;
+        loading = false;
+      })
+      .catch(() => loading = false);
+  }
+});
 
 
     </script>
