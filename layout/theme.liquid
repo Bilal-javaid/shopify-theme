@@ -402,42 +402,30 @@
         countrySelectorSearchCount: `{{ 'localization.country_results_count' | t: count: '[count]' }}`,
       };
 
-      
-      document.addEventListener('DOMContentLoaded', function () {
-        let loading = false;
-        
-        window.addEventListener('scroll', function () {
-          const nextPageElement = document.getElementById('NextPageURL');
-          if (!nextPageElement || nextPageElement.getAttribute('data-last-page') === 'true') return;
-          if (loading) return;
+      let currentPage = 1;
+      const totalPages = {{ paginate.pages }};
+      const productGrid = document.getElementById('product-grid');
 
-          let nextPageURL = nextPageElement.getAttribute('data-next-page');
-
-          if (window.scrollY + window.innerHeight >= document.body.offsetHeight - 300) {
-            loading = true;
-            fetch(nextPageURL)
-              .then(res => res.text())
-              .then(data => {
-                let parser = new DOMParser();
-                let doc = parser.parseFromString(data, 'text/html');
-                let newProducts = doc.querySelector('#AjaxProductContainer').innerHTML;
-                let newNextPage = doc.querySelector('#NextPageURL');
-
-                document.getElementById('AjaxProductContainer').innerHTML += newProducts;
-
-                if (newNextPage) {
-                  nextPageElement.setAttribute('data-next-page', newNextPage.getAttribute('data-next-page'));
-                } else {
-                  nextPageElement.setAttribute('data-last-page', 'true');
-                }
-                loading = false;
-              })
-              .catch(() => {
-                loading = false;
-              });
+      window.addEventListener('scroll', () => {
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 200) {
+          if (currentPage < totalPages) {
+            currentPage++;
+            loadMoreProducts(currentPage);
           }
-        });
+        }
       });
+
+      function loadMoreProducts(page) {
+        fetch(`?page=${page}&section_id={{ section.id }}`)
+          .then(response => response.text())
+          .then(data => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(data, 'text/html');
+            const newItems = htmlDoc.querySelectorAll('#product-grid > li');
+            newItems.forEach(item => productGrid.appendChild(item));
+          });
+      }
+
 
     </script>
 
