@@ -404,41 +404,36 @@
 
 
 
-      document.addEventListener('DOMContentLoaded', function () {
-  let loading = false;
-  
-  window.addEventListener('scroll', function () {
-    const nextPageElement = document.getElementById('NextPageURL');
-    if (!nextPageElement || nextPageElement.getAttribute('data-last-page') === 'true') return;
-    if (loading) return;
+      let loading = false;
+      let nextPageURL = document.getElementById('NextPageURL')?.dataset.nextPage;
 
-    let nextPageURL = nextPageElement.getAttribute('data-next-page');
+      window.addEventListener('scroll', () => {
+        if (loading || !nextPageURL) return;
 
-    if (window.scrollY + window.innerHeight >= document.body.offsetHeight - 300) {
-      loading = true;
-      fetch(nextPageURL)
-        .then(res => res.text())
-        .then(data => {
-          let parser = new DOMParser();
-          let doc = parser.parseFromString(data, 'text/html');
-          let newProducts = doc.querySelector('#AjaxProductContainer').innerHTML;
-          let newNextPage = doc.querySelector('#NextPageURL');
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 300) {
+          loading = true;
 
-          document.getElementById('AjaxProductContainer').innerHTML += newProducts;
+          fetch(nextPageURL)
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const doc = parser.parseFromString(html, "text/html");
+              const newProducts = doc.querySelectorAll("#product-grid > li");
 
-          if (newNextPage) {
-            nextPageElement.setAttribute('data-next-page', newNextPage.getAttribute('data-next-page'));
-          } else {
-            nextPageElement.setAttribute('data-last-page', 'true');
-          }
-          loading = false;
-        })
-        .catch(() => {
-          loading = false;
-        });
-    }
-  });
-});
+              newProducts.forEach(product => {
+                document.getElementById('AjaxProductContainer').appendChild(product);
+              });
+
+              // Update nextPageURL
+              const next = doc.getElementById('NextPageURL');
+              nextPageURL = next ? next.dataset.nextPage : null;
+
+              loading = false;
+            })
+            .catch(() => loading = false);
+        }
+      });
+
 
     </script>
 
