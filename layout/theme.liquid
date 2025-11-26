@@ -401,40 +401,6 @@
         recipientFormCollapsed: `{{ 'recipient.form.collapsed' | t }}`,
         countrySelectorSearchCount: `{{ 'localization.country_results_count' | t: count: '[count]' }}`,
       };
-
-     let currentPage = 1;
-let loading = false;
-
-window.addEventListener('scroll', () => {
-  if (loading) return;
-  
-  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 300) {
-    const nextPage = currentPage + 1;
-    const totalPages = {{ paginate.pages }};
-    
-    if (nextPage > totalPages) return;
-    
-    loading = true;
-    
-    fetch(`?page=${nextPage}`)
-      .then(response => response.text())
-      .then(html => {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, "text/html");
-        const newProducts = doc.querySelectorAll("#product-grid > li");
-
-        newProducts.forEach(product => {
-          document.querySelector("#product-grid").appendChild(product);
-        });
-
-        currentPage++;
-        loading = false;
-      })
-      .catch(() => loading = false);
-  }
-});
-
-
     </script>
 
     {%- if settings.predictive_search_enabled -%}
