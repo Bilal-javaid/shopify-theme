@@ -49,6 +49,40 @@
         "show_text_below": false
       }
     },
+    "collection_list_dJmU4G": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_4aD4jy": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "watch"
+          }
+        },
+        "featured_collection_699JdN": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "jewellery"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_4aD4jy",
+        "featured_collection_699JdN"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "Collections",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
@@ -206,6 +240,7 @@
   },
   "order": [
     "image_banner",
+    "collection_list_dJmU4G",
     "featured_collection",
     "profile_card_Fcqd6L",
     "image_banner_fRfeCf",
