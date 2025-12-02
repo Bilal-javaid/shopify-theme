@@ -445,37 +445,21 @@
 
 
     <script>
-      document.addEventListener('click', function (e) {
-        // handle swatch clicks
-        const btn = e.target.closest('.swatch-btn');
-        if (!btn) return;
+     document.addEventListener('click', function (e) {
+  if (e.target.classList.contains('color-swatch')) {
+    const value = e.target.dataset.value;
+    const card = e.target.closest('.card-wrapper');
+    const img = card.querySelector('.card__media img');
 
-        const swatchContainer = btn.closest('.product-card-swatches');
-        const productId = swatchContainer?.dataset?.productId;
-        const imgUrl = btn.dataset.image; // big image url
-        const variantId = btn.dataset.variantId;
+    // Find matching variant
+    const variant = window?.productVariants?.find(v => v.option1 === value);
 
-        // find the product card main image — adapt selector if your theme differs:
-        const productCard = document.querySelector(`[data-product-id="${productId}"]`)?.closest('.product-card');
-        // fallback: look for an image inside the same product-card-swatches block's container
-        const card = productCard || btn.closest('.product-card') || swatchContainer.closest('.product-card');
+    if (variant && img) {
+      img.src = variant.featured_image.src;
+    }
+  }
+});
 
-        if (!card) return;
-
-        // try common selectors used in Dawn for product card image
-        const imgEl = card.querySelector('img.product-card-image, img.card__media, img.product-card__image, .media img');
-
-        if (imgEl && imgUrl) {
-          // change srcset and src for responsive images (safe fallback)
-          imgEl.src = imgUrl;
-          if (imgEl.srcset !== undefined) imgEl.srcset = imgUrl;
-        }
-
-        // visual active state
-        const siblings = swatchContainer.querySelectorAll('.swatch-btn');
-        siblings.forEach(s => s.classList.remove('active'));
-        btn.classList.add('active');
-      });
 
     </script>
 
