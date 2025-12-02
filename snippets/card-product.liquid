@@ -721,3 +721,18 @@
     </div>
   </div>
 {%- endif -%}
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".swatch-image").forEach(function (swatch) {
+      swatch.addEventListener("click", function () {
+        const card = swatch.closest(".card-wrapper");
+        const img = card.querySelector("img");
+
+        if (img && swatch.dataset.variantImage) {
+          img.src = swatch.dataset.variantImage;
+        }
+      });
+    });
+  });
+</script>
