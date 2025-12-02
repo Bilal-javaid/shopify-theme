@@ -364,7 +364,27 @@
               {% endif %}
             {%- endif -%}
           </div>
-          HI bilal
+          {% if product.options_with_values %}
+            <div class="color-swatches">
+              {% for option in product.options_with_values %}
+                {% if option.name == 'Color' %}
+                  {% for value in option.values %}
+                    {% assign variant = product.variants | where: 'option1', value | first %}
+                    
+                    <img 
+                      src="{{ variant.featured_image.src | img_url: '50x50' }}" 
+                      alt="{{ value }}" 
+                      class="swatch-image"
+                      data-variant-id="{{ variant.id }}"
+                      data-variant-image="{{ variant.featured_image.src | img_url: '600x' }}"
+                      style="width:28px; height:28px; border-radius:50%; cursor:pointer; margin-right:6px;"
+                    >
+                  {% endfor %}
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endif %}
+
 
         </div>
         {% assign product_form_id = 'quick-add-' | append: section_id | append: card_product.id %}
