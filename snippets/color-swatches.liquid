@@ -1,43 +1,14 @@
-{%- comment -%}
-  snippets/color-swatches.liquid
-  Usage: {% render 'color-swatches', product: product %}
-{%- endcomment -%}
-
-{%- assign color_option_index = nil -%}
-{%- for opt in product.options_with_values -%}
-  {%- if opt.name | downcase == 'color' -%}
-    {%- assign color_option_index = forloop.index0 -%}
-  {%- endif -%}
-{%- endfor -%}
-
-{%- if color_option_index != nil -%}
-  <div class="product-card-swatches" data-product-id="{{ product.id }}">
-    {%- assign seen_colors = '' -%}
-    {%- for variant in product.variants -%}
-      {%- assign color_value = variant.options[color_option_index] -%}
-      {%- if color_value and seen_colors contains color_value == false -%}
-        {%- assign seen_colors = seen_colors | append: color_value | append: '|' -%}
-        {%- if variant.featured_image -%}
-          {%- assign swatch_img = variant.featured_image | img_url: '100x' -%}
-          {%- assign big_img = variant.featured_image | img_url: '800x' -%}
-        {%- else -%}
-          {%- assign swatch_img = '' -%}
-          {%- assign big_img = '' -%}
-        {%- endif -%}
-
-        <button type="button"
-                class="swatch-btn"
-                aria-label="{{ color_value }}"
-                data-color="{{ color_value }}"
-                data-variant-id="{{ variant.id }}"
-                data-image="{{ big_img }}">
-          {% if swatch_img != '' %}
-            <img src="{{ swatch_img }}" alt="{{ color_value }}" class="swatch-thumb" />
-          {% else %}
-            <span class="swatch-placeholder">{{ color_value | slice: 0, 1 }}</span>
-          {% endif %}
+{% for opt in product.options_with_values %}
+  {% capture option_downcase %}{{ opt.name | downcase }}{% endcapture %}
+  {% if option_downcase == 'color' %}
+    <div class="color-swatches">
+      {% for value in opt.values %}
+        <button 
+          class="color-swatch" 
+          data-value="{{ value | escape }}"
+          style="background-image:url({{ product.variants | where: 'option1', value | first | img_url: '200x' }});">
         </button>
-      {%- endif -%}
-    {%- endfor -%}
-  </div>
-{%- endif -%}
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endfor %}
