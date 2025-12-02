@@ -254,14 +254,6 @@
         }
       }
 /* Custom css by bilal */
-
-.product-card-swatches { margin-top: 8px; display: flex; gap:6px; align-items:center; flex-wrap:wrap; }
-.swatch-btn { border: 1px solid #ddd; padding:4px; background:#fff; cursor:pointer; width:34px; height:34px; display:inline-flex; align-items:center; justify-content:center; border-radius:4px; }
-.swatch-btn.active { outline: 2px solid #000; }
-.swatch-thumb { width:100%; height:100%; object-fit:cover; border-radius:2px; }
-.swatch-placeholder { font-size:12px; color:#333; }
-
-
     .product-card-wrapper .card__inner {
         height: 350px;
     }
@@ -441,24 +433,6 @@
             .catch(() => loading = false);
         }
       });
-    </script>
-
-
-    <script>
-     document.addEventListener('click', function (e) {
-  if (e.target.classList.contains('color-swatch')) {
-    const value = e.target.dataset.value;
-    const card = e.target.closest('.card-wrapper');
-    const img = card.querySelector('.card__media img');
-
-    // Find matching variant
-    const variant = window?.productVariants?.find(v => v.option1 === value);
-
-    if (variant && img) {
-      img.src = variant.featured_image.src;
-    }
-  }
-});
 
 
     </script>
