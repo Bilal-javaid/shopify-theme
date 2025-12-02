@@ -364,6 +364,7 @@
               {% endif %}
             {%- endif -%}
           </div>
+          {%- render 'color-swatches', product: product -%}
         </div>
         {% assign product_form_id = 'quick-add-' | append: section_id | append: card_product.id %}
         {% if quick_add == 'standard' %}
