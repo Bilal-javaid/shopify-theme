@@ -63,11 +63,18 @@
           "settings": {
             "collection": "jewellery"
           }
+        },
+        "featured_collection_fFMgWM": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "shirts"
+          }
         }
       },
       "block_order": [
         "featured_collection_4aD4jy",
-        "featured_collection_699JdN"
+        "featured_collection_699JdN",
+        "featured_collection_fFMgWM"
       ],
       "name": "t:sections.collection-list.presets.name",
       "settings": {
