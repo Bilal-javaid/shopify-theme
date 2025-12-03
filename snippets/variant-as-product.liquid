@@ -1,35 +1,87 @@
 {% comment %}
-This snippet outputs each Color variant as a separate product card
+Outputs each Color variant as a separate product card with Dawn 12+ styling
+Tested for Dawn 12+ theme
 {% endcomment %}
 
+{% assign option_chosen = 'color' %}
+
 {% if product.has_only_default_variant %}
-  {%- render 'card-product', card_product: product -%}
+  <li class="grid__item">
+    {% render 'card-product', card_product: product %}
+  </li>
 {% else %}
+  {% assign displayed_values = '' %}
   {% for variant in product.variants %}
     {% assign option_index = 0 %}
     {% for option in product.options %}
-      {% assign option_name = option | downcase %}
-      {% if option_name == 'color' %}
+      {% if option | downcase == option_chosen %}
         {% assign option_index = forloop.index0 %}
       {% endif %}
     {% endfor %}
 
-    {% assign variant_color = variant.options[option_index] %}
+    {% assign variant_option = variant.options[option_index] %}
+    
+    {% assign valueIsDisplayed = false %}
+    {% for value in displayed_values %}
+      {% if value == variant_option %}
+        {% assign valueIsDisplayed = true %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
 
-    {% capture variant_url %}
-      {{ product.url }}?variant={{ variant.id }}
-    {% endcapture %}
+    {% unless valueIsDisplayed %}
+      {% assign displayed_values = displayed_values | append: variant_option | append: ';' %}
+      {% capture variant_url %}{{ product.url }}?variant={{ variant.id }}{% endcapture %}
 
-    <div class="variant-as-product-item">
-      <a href="{{ variant_url }}" class="variant-product-link">
-        <img
-          src="{{ variant.featured_image | img_url: '500x' }}"
-          alt="{{ variant_color }}"
-        >
-        <div class="variant-product-title">
-          {{ product.title }} – {{ variant_color }}
+      <li class="grid__item">
+        <div class="card-wrapper product-card-wrapper underline-links-hover">
+          <div class="card card--standard card--media">
+            {% if variant.featured_image %}
+              <div class="card__media">
+                <a href="{{ variant_url }}">
+                  <img src="{{ variant.featured_image | img_url: '533x' }}" alt="{{ variant_option }}" loading="lazy">
+                  {% if product.media[1] %}
+                    <img src="{{ product.media[1] | img_url: '533x' }}" class="card__media--secondary" alt="{{ variant_option }}" loading="lazy">
+                  {% endif %}
+                </a>
+              </div>
+            {% endif %}
+
+            <div class="card__content">
+              <h3 class="card__heading">
+                <a href="{{ variant_url }}">
+                  {{ product.title }} – {{ variant_option }}
+                </a>
+              </h3>
+
+              {% if variant.available == false %}
+                <span class="badge badge--bottom-left color-sold-out">Sold Out</span>
+              {% elsif variant.compare_at_price > variant.price %}
+                <span class="badge badge--bottom-left color-sale">Sale</span>
+              {% endif %}
+
+              <div class="card__price">
+                {% render 'price', product: variant, price_class: '', show_compare_at_price: true %}
+              </div>
+
+              {% if section.settings.enable_quick_add %}
+                <div class="quick-add">
+                  <product-form data-section-id="{{ section.id }}">
+                    <input type="hidden" name="id" value="{{ variant.id }}">
+                    <button type="submit" class="button button--secondary button--full-width">
+                      {% if variant.available %}
+                        Add to Cart
+                      {% else %}
+                        Sold Out
+                      {% endif %}
+                    </button>
+                  </product-form>
+                </div>
+              {% endif %}
+            </div>
+          </div>
         </div>
-      </a>
-    </div>
+      </li>
+    {% endunless %}
   {% endfor %}
 {% endif %}
