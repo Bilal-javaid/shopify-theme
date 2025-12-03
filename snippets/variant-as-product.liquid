@@ -14,7 +14,8 @@ Tested for Dawn 12+ theme
   {% for variant in product.variants %}
     {% assign option_index = 0 %}
     {% for option in product.options %}
-      {% if option | downcase == option_chosen %}
+      {% assign option_name = option | downcase %}
+      {% if option_name == option_chosen %}
         {% assign option_index = forloop.index0 %}
       {% endif %}
     {% endfor %}
