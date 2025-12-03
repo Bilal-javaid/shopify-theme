@@ -1,6 +1,6 @@
 {% comment %}
-Outputs each Color variant as a separate product card with Dawn 12+ styling
-Tested for Dawn 12+ theme
+Render each color variant as a separate product card
+Simple version for collection grids
 {% endcomment %}
 
 {% assign option_chosen = 'color' %}
@@ -11,6 +11,7 @@ Tested for Dawn 12+ theme
   </li>
 {% else %}
   {% assign displayed_values = '' %}
+
   {% for variant in product.variants %}
     {% assign option_index = 0 %}
     {% for option in product.options %}
@@ -22,66 +23,13 @@ Tested for Dawn 12+ theme
 
     {% assign variant_option = variant.options[option_index] %}
     
-    {% assign valueIsDisplayed = false %}
-    {% for value in displayed_values %}
-      {% if value == variant_option %}
-        {% assign valueIsDisplayed = true %}
-        {% break %}
-      {% endif %}
-    {% endfor %}
-
-    {% unless valueIsDisplayed %}
+    {% unless displayed_values contains variant_option %}
       {% assign displayed_values = displayed_values | append: variant_option | append: ';' %}
+
       {% capture variant_url %}{{ product.url }}?variant={{ variant.id }}{% endcapture %}
 
       <li class="grid__item">
-        <div class="card-wrapper product-card-wrapper underline-links-hover">
-          <div class="card card--standard card--media">
-            {% if variant.featured_image %}
-              <div class="card__media">
-                <a href="{{ variant_url }}">
-                  <img src="{{ variant.featured_image | img_url: '533x' }}" alt="{{ variant_option }}" loading="lazy">
-                  {% if product.media[1] %}
-                    <img src="{{ product.media[1] | img_url: '533x' }}" class="card__media--secondary" alt="{{ variant_option }}" loading="lazy">
-                  {% endif %}
-                </a>
-              </div>
-            {% endif %}
-
-            <div class="card__content">
-              <h3 class="card__heading">
-                <a href="{{ variant_url }}">
-                  {{ product.title }} – {{ variant_option }}
-                </a>
-              </h3>
-
-              {% if variant.available == false %}
-                <span class="badge badge--bottom-left color-sold-out">Sold Out</span>
-              {% elsif variant.compare_at_price > variant.price %}
-                <span class="badge badge--bottom-left color-sale">Sale</span>
-              {% endif %}
-
-              <div class="card__price">
-                {% render 'price', product: variant, price_class: '', show_compare_at_price: true %}
-              </div>
-
-              {% if section.settings.enable_quick_add %}
-                <div class="quick-add">
-                  <product-form data-section-id="{{ section.id }}">
-                    <input type="hidden" name="id" value="{{ variant.id }}">
-                    <button type="submit" class="button button--secondary button--full-width">
-                      {% if variant.available %}
-                        Add to Cart
-                      {% else %}
-                        Sold Out
-                      {% endif %}
-                    </button>
-                  </product-form>
-                </div>
-              {% endif %}
-            </div>
-          </div>
-        </div>
+        {% render 'card-product', card_product: variant, variant_option: variant_option %}
       </li>
     {% endunless %}
   {% endfor %}
