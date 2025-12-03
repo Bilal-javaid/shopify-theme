@@ -143,6 +143,11 @@
             class="collection{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
           >
             <div class="loading-overlay gradient"></div>
+            <ul class="grid grid--uniform">
+            {% for product in collection.products %}
+              {% render 'variant-as-product', product: product %}
+            {% endfor %}
+          </ul>
      <ul
       id="product-grid"
       data-id="{{ section.id }}"
