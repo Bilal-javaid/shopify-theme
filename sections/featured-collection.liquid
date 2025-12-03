@@ -105,7 +105,7 @@
               style="--animation-order: {{ forloop.index }};"
             {% endif %}
           >
-            {% render 'card-product-custom',
+            {% render 'card-product',
               card_product: product,
               media_aspect_ratio: section.settings.image_ratio,
               image_shape: section.settings.image_shape,
@@ -502,23 +502,3 @@
   ]
 }
 {% endschema %}
-
-<script>
-var variantDataMap{{ section.id | replace: '-', '_' }} = {
-  {% assign isFirstVariant = true %}
-  {% for product in section.settings.collection.products %}
-    {% for variant in product.variants %}
-      {% if variant.featured_media %}
-        {% unless isFirstVariant %},{% endunless %}
-        "{{ variant.id }}": {
-          "imageUrl": "{{ variant.featured_media | img_url: 'master' }}",
-          "productUrl": "{{ product.url | append: '?variant=' | append: variant.id }}"
-        }
-        {% assign isFirstVariant = false %}
-      {% endif %}
-    {% endfor %}
-  {% endfor %}
-};
-</script>
-
-{{ 'card-product-variant-selection-custom.js' | asset_url | script_tag }}
