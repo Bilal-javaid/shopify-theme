@@ -1,6 +1,5 @@
 {% comment %}
 This snippet outputs each Color variant as a separate product card
-Styled like Dawn theme product cards
 {% endcomment %}
 
 {% if product.has_only_default_variant %}
@@ -9,61 +8,27 @@ Styled like Dawn theme product cards
   {% for variant in product.variants %}
     {% assign option_index = 0 %}
     {% for option in product.options %}
-      {% assign option_name = option | downcase %}
-      {% if option_name == 'color' %}
+      {% if option | downcase == 'color' %}
         {% assign option_index = forloop.index0 %}
       {% endif %}
     {% endfor %}
 
     {% assign variant_color = variant.options[option_index] %}
 
-    {% capture variant_url %}
+    {%- capture variant_url -%}
       {{ product.url }}?variant={{ variant.id }}
-    {% endcapture %}
+    {%- endcapture -%}
 
-    <div class="card-wrapper underline-links-hover">
-      <div class="card card--standard card--media card--has-media">
-        
-        <!-- Product Image -->
-        <div class="card__media">
-          <a href="{{ variant_url }}">
-            {% if variant.featured_image %}
-              <img src="{{ variant.featured_image | img_url: '500x' }}" alt="{{ variant_color }}" class="motion-reduce">
-            {% else %}
-              <img src="{{ product.featured_image | img_url: '500x' }}" alt="{{ variant_color }}" class="motion-reduce">
-            {% endif %}
-          </a>
+    <div class="variant-as-product-item">
+      <a href="{{ variant_url }}" class="variant-product-link">
+        <img
+          src="{{ variant.featured_image | img_url: '500x' }}"
+          alt="{{ variant_color }}"
+        >
+        <div class="variant-product-title">
+          {{ product.title }} – {{ variant_color }}
         </div>
-
-        <!-- Product Info -->
-        <div class="card__content">
-          <h3 class="card__heading">
-            <a href="{{ variant_url }}">
-              {{ product.title }} – {{ variant_color }}
-            </a>
-          </h3>
-
-          <!-- Optional: Price -->
-          <div class="card__price">
-            {% if variant.compare_at_price > variant.price %}
-              <span class="card__price--sale">{{ variant.price | money }}</span>
-              <span class="card__price--compare">{{ variant.compare_at_price | money }}</span>
-            {% else %}
-              <span class="card__price">{{ variant.price | money }}</span>
-            {% endif %}
-          </div>
-
-          <!-- Optional: Add to Cart Button -->
-          <form method="post" action="/cart/add">
-            <input type="hidden" name="id" value="{{ variant.id }}">
-            <button type="submit" class="button button--primary card__add-to-cart">
-              Add to cart
-            </button>
-          </form>
-        </div>
-
-      </div>
+      </a>
     </div>
-
   {% endfor %}
 {% endif %}
