@@ -1,0 +1,34 @@
+{% comment %}
+This snippet outputs each Color variant as a separate product card
+{% endcomment %}
+
+{% if product.has_only_default_variant %}
+  {%- render 'card-product', card_product: product -%}
+{% else %}
+  {% for variant in product.variants %}
+    {% assign option_index = 0 %}
+    {% for option in product.options %}
+      {% if option | downcase == 'color' %}
+        {% assign option_index = forloop.index0 %}
+      {% endif %}
+    {% endfor %}
+
+    {% assign variant_color = variant.options[option_index] %}
+
+    {%- capture variant_url -%}
+      {{ product.url }}?variant={{ variant.id }}
+    {%- endcapture -%}
+
+    <div class="variant-as-product-item">
+      <a href="{{ variant_url }}" class="variant-product-link">
+        <img
+          src="{{ variant.featured_image | img_url: '500x' }}"
+          alt="{{ variant_color }}"
+        >
+        <div class="variant-product-title">
+          {{ product.title }} – {{ variant_color }}
+        </div>
+      </a>
+    </div>
+  {% endfor %}
+{% endif %}
