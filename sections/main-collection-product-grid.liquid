@@ -159,14 +159,14 @@
         {%- if forloop.index > 2 -%}
           {%- assign lazy_load = true -%}
         {%- endif -%}
-        {% comment %} <li
-            class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-            {% if settings.animations_reveal_on_scroll %}
-              data-cascade
-              style="--animation-order: {{ forloop.index }};"
-            {% endif %}
-          >
-                 {% render 'card-product-custom',
+        <li
+          class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          {% if settings.animations_reveal_on_scroll %}
+            data-cascade
+            style="--animation-order: {{ forloop.index }};"
+          {% endif %}
+        >
+       {% render 'card-product-custom',
                     card_product: product,
                     media_aspect_ratio: section.settings.image_ratio,
                     image_shape: section.settings.image_shape,
@@ -176,87 +176,8 @@
                     lazy_load: lazy_load,
                     show_quick_add: section.settings.enable_quick_add,
                     section_id: section.id
-                  %} 
-        </li> {% endcomment %}
-        {%- liquid
-  assign option_chosen = "Color"
-  assign option_index = ''
-  for option in product.options
-    if option_chosen == option
-      assign option_index = forloop.index0
-      break
-    endif
-  endfor
--%}
-
-{% comment %}
-Collection grid rendering
-- Shows normal product if no Color option
-- Shows each Color variant as a separate card
-Tested with Dawn v14+
-{% endcomment %}
-
-{%- if option_index == '' -%}
-  <li
-    class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-    {% if settings.animations_reveal_on_scroll %}
-      data-cascade
-      style="--animation-order: {{ forloop.index }};"
-    {% endif %}
-  >
-    {% render 'card-product',
-      card_product: product,
-      media_aspect_ratio: section.settings.image_ratio,
-      image_shape: section.settings.image_shape,
-      show_secondary_image: section.settings.show_secondary_image,
-      show_vendor: section.settings.show_vendor,
-      show_rating: section.settings.show_rating,
-      lazy_load: lazy_load,
-      show_quick_add: section.settings.enable_quick_add,
-      section_id: section.id
-    %}
-  </li>
-{%- else -%}
-  {%- assign displayed_values = "" -%}
-  {% for variant in product.variants %}
-    {%- assign variant_option = variant.options[option_index] -%}
-    {%- assign valueIsDisplayed = false -%}
-    {% for value in displayed_values %}
-      {% if value == variant_option %}
-        {%- assign valueIsDisplayed = true -%}
-        {% break %}
-      {% endif %}
-    {% endfor %}
-
-    {% unless valueIsDisplayed %}
-      {%- assign variant_option_arr = variant_option | append: ';' | split: ';' -%}
-      {%- assign displayed_values = displayed_values | concat: variant_option_arr -%}
-
-      <li
-        class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-        {% if settings.animations_reveal_on_scroll %}
-          data-cascade
-          style="--animation-order: {{ forloop.index }};"
-        {% endif %}
-      >
-        {% render 'variant-as-product',
-          card_variant: variant,
-          card_product: product,
-          variant_option: variant_option,
-          media_aspect_ratio: section.settings.image_ratio,
-          image_shape: section.settings.image_shape,
-          show_secondary_image: section.settings.show_secondary_image,
-          show_vendor: section.settings.show_vendor,
-          show_rating: section.settings.show_rating,
-          lazy_load: lazy_load,
-          show_quick_add: section.settings.enable_quick_add,
-          section_id: section.id
-        %}
-      </li>
-    {% endunless %}
-  {% endfor %}
-{%- endif -%}
-
+                  %}
+        </li>
         {%- assign skip_card_product_styles = true -%}
       {%- endfor -%}
     </ul>
@@ -507,7 +428,7 @@ Tested with Dawn v14+
 }
 {% endschema %}
 
-{% comment %} <script>
+<script>
 var variantDataMap{{ section.id | replace: '-', '_' }} = {
   {% assign isFirstVariant = true %}  
   {% for product in collection.products %}
@@ -524,4 +445,4 @@ var variantDataMap{{ section.id | replace: '-', '_' }} = {
   {% endfor %}
 };
 </script>
-{{ 'card-product-variant-selection-custom.js' | asset_url | script_tag }} {% endcomment %}
+{{ 'card-product-variant-selection-custom.js' | asset_url | script_tag }}
