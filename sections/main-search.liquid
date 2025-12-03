@@ -272,7 +272,7 @@
                     {%- case item.object_type -%}
                       {%- when 'product' -%}
                         {%- capture product_settings -%}{%- if section.settings.product_show_vendor -%}vendor,{%- endif -%}title,price{%- endcapture -%}
-                        {% render 'card-product-custom',
+                        {% render 'card-product',
                           card_product: item,
                           media_aspect_ratio: section.settings.image_ratio,
                           image_shape: section.settings.image_shape,
@@ -534,24 +534,3 @@
   ]
 }
 {% endschema %}
-<script>
-var variantDataMap{{ section.id | replace: '-', '_' }} = {
-  {% assign isFirstVariant = true %}
-  {% for item in search.results %}
-    {% if item.object_type == 'product' %}
-      {% for variant in item.variants %}
-        {% if variant.featured_media %}
-          {% unless isFirstVariant %},{% endunless %}
-          "{{ variant.id }}": {
-            "imageUrl": "{{ variant.featured_media | img_url: 'master' }}",
-            "productUrl": "{% if item.url contains '?' %}{{ item.url | append: '&variant=' | append: variant.id }}{% else %}{{ item.url | append: '?variant=' | append: variant.id }}{% endif %}"
-          }
-          {% assign isFirstVariant = false %}
-        {% endif %}
-      {% endfor %}
-    {% endif %}
-  {% endfor %}
-};
-</script>
-
-{{ 'card-product-variant-selection-custom.js' | asset_url | script_tag }}
