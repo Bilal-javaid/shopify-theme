@@ -8,16 +8,17 @@ This snippet outputs each Color variant as a separate product card
   {% for variant in product.variants %}
     {% assign option_index = 0 %}
     {% for option in product.options %}
-      {% if option | downcase == 'color' %}
+      {% assign option_name = option | downcase %}
+      {% if option_name == 'color' %}
         {% assign option_index = forloop.index0 %}
       {% endif %}
     {% endfor %}
 
     {% assign variant_color = variant.options[option_index] %}
 
-    {%- capture variant_url -%}
+    {% capture variant_url %}
       {{ product.url }}?variant={{ variant.id }}
-    {%- endcapture -%}
+    {% endcapture %}
 
     <div class="variant-as-product-item">
       <a href="{{ variant_url }}" class="variant-product-link">
