@@ -243,6 +243,62 @@
         "video_radius": 0,
         "button_radius": 5
       }
+    },
+    "uniq_product_slider_9K3k8F": {
+      "type": "uniq-product-slider",
+      "blocks": {
+        "slide_JwNFcy": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/pexels-photo-190819_3ef61977-db3d-48e2-869a-c7ebbdbf9b2e.jpg",
+            "category": "Sport Shoes",
+            "title": "NIKE D.01",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+            "button_text": "View Product",
+            "button_link": ""
+          }
+        },
+        "slide_c6y8PN": {
+          "type": "slide",
+          "settings": {
+            "category": "Sport Shoes",
+            "title": "NIKE D.01",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+            "button_text": "View Product",
+            "button_link": ""
+          }
+        },
+        "slide_FQqiQr": {
+          "type": "slide",
+          "settings": {
+            "category": "Sport Shoes",
+            "title": "NIKE D.01",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+            "button_text": "View Product",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_JwNFcy",
+        "slide_c6y8PN",
+        "slide_FQqiQr"
+      ],
+      "name": "Unique Product Slider",
+      "settings": {
+        "slider_title": "Featured Products",
+        "background_color": "#232442",
+        "category_color": "#ffffff",
+        "title_color": "#ffffff",
+        "description_color": "#ffffff",
+        "button_bg_color_start": "#81baa0",
+        "button_bg_color_end": "#46a39c",
+        "button_text_color": "#ffffff",
+        "arrow_bg_color": "#232442",
+        "arrow_color": "#ffffff",
+        "dot_active_color": "#ffff00",
+        "dot_inactive_color": "#659cdf"
+      }
     }
   },
   "order": [
@@ -251,6 +307,7 @@
     "featured_collection",
     "profile_card_Fcqd6L",
     "image_banner_fRfeCf",
-    "media_section_bybilal_tWeTVk"
+    "media_section_bybilal_tWeTVk",
+    "uniq_product_slider_9K3k8F"
   ]
 }
