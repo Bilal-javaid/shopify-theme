@@ -359,7 +359,7 @@
         "slider_gap_mobile": 10,
         "slider_mt": 50,
         "slider_direction": "left",
-        "pause_hover": false,
+        "pause_hover": true,
         "image_width_desktop": 300,
         "image_width_mobile": 120,
         "image_height_desktop": 400,
