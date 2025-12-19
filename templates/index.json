@@ -451,10 +451,10 @@
         "text_width": 50,
         "text_color": "#121212",
         "text_background_color": "",
-        "border_color": "#FFFFFF",
-        "drag_color": "#FFFFFF",
+        "border_color": "#ffffff",
+        "drag_color": "#ffffff",
         "handle_color": "#121212",
-        "caption_text": "#FFFFFF",
+        "caption_text": "#ffffff",
         "caption_background": "#121212",
         "background_color": "",
         "show_background_image": false,
@@ -462,6 +462,79 @@
         "base_width": 90,
         "max_width": "",
         "inner_padding": 60,
+        "outer_margin": 0,
+        "custom_css": "",
+        "mobile_custom_css": "",
+        "anchor_id": "",
+        "override_theme_font": false,
+        "heading_font": "serif",
+        "main_font": "system_ui_n4"
+      }
+    },
+    "video_carousal_LYkJnK": {
+      "type": "video-carousal",
+      "blocks": {
+        "video_xMzjj9": {
+          "type": "video",
+          "settings": {
+            "html5_video": "shopify://files/videos/20250723_221845.mp4",
+            "product": "",
+            "collection": ""
+          }
+        },
+        "video_zQFwpP": {
+          "type": "video",
+          "settings": {
+            "product": "",
+            "collection": ""
+          }
+        },
+        "video_BDLVD8": {
+          "type": "video",
+          "settings": {
+            "product": "",
+            "collection": ""
+          }
+        },
+        "video_pj9jPB": {
+          "type": "video",
+          "settings": {
+            "product": "",
+            "collection": ""
+          }
+        },
+        "video_emJT33": {
+          "type": "video",
+          "settings": {
+            "product": "",
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "video_xMzjj9",
+        "video_zQFwpP",
+        "video_BDLVD8",
+        "video_pj9jPB",
+        "video_emJT33"
+      ],
+      "name": "Video carousel",
+      "settings": {
+        "slide_width": 300,
+        "image_crop": "none",
+        "aspect_ratio": "9:16",
+        "autoplay": 8,
+        "gap": 10,
+        "show_arrows": false,
+        "text_size": 100,
+        "text_alignment": "left",
+        "text_color": "#121212",
+        "border_color": "#121212",
+        "background_color": "",
+        "border_radius": 10,
+        "base_width": 100,
+        "max_width": "",
+        "inner_padding": 40,
         "outer_margin": 0,
         "custom_css": "",
         "mobile_custom_css": "",
@@ -481,6 +554,7 @@
     "media_section_bybilal_tWeTVk",
     "uniq_product_slider_9K3k8F",
     "scrolling_images_T8U8zQ",
-    "before_after_slider_bcfaqD"
+    "before_after_slider_bcfaqD",
+    "video_carousal_LYkJnK"
   ]
 }
